@@ -29,7 +29,7 @@
       <div style="margin-top: 10px;">
         <label for="target-lang-select">Target Language:</label>
         <select name="deepl_target" id="deepl_target">
-          <option value="">--Please choose an option--</option>
+          <option value="">--Please choose an Language--</option>
           <option value="BG">Bulgarian</option>
           <option value="CS">Czech</option>
           <option value="DA">Danish</option>
@@ -54,13 +54,14 @@
           <option value="ZH">Chinese</option>
         </select>
       </div>
-      <input
-        id="save_button"
-        style="margin-top: 30px;"
-        type="button"
-        value="Save"
-      />
-      <span id="message_text"></span>
+      <div style="margin-top: 10px;">
+        <a href="javascript: void(0);" id="check_button">Deepl Usage Check</a>
+        <span id="deepl_usage"></span>
+      </div>
+      <div style="margin-top: 30px;">
+        <input id="save_button" type="button" value="Save" />
+        <span id="message_text"></span>
+      </div>
     </form>
 
     <script src="main.js" type="module"></script>
