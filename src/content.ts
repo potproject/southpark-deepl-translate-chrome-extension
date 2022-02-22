@@ -17,21 +17,37 @@ const endpoint = {
 let nowURL = "";
 let nowText = "";
 
-document.addEventListener("click", () => {
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded',afterDOMLoaded);
+} else {
+  afterDOMLoaded();
+}
+
+function afterDOMLoaded(){
   getVideo();
-});
+}
 
 function getVideo() {
   const video = document.querySelector("video");
-  video?.addEventListener("play", (e) => {
-    const track = video.querySelector("track");
-    if (track && track.src) {
-      const blobURL = track.src;
-      translate(blobURL).then(
-        (url) => { if (url) { track.src = url } }
-      )
-    } e
+  if (!video){
+    setTimeout(() => {
+      getVideo();
+    }, 1000);
+    return;
+  }
+  video.addEventListener("play", (e) => {
+    setTrack(video);
   });
+}
+
+function setTrack(video: HTMLVideoElement){
+  const track = video.querySelector("track");
+  if (track && track.src) {
+    const blobURL = track.src;
+    translate(blobURL).then(
+      (url) => { if (url) { track.src = url } }
+    )
+  }
 }
 
 async function translate(blobUrl: string): Promise<string> {
