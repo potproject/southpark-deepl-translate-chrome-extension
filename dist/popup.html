@@ -1,0 +1,68 @@
+<html>
+  <head> </head>
+
+  <body style="width: 300px;">
+    <form name="form">
+      <div>Deepl API:</div>
+      <div>
+        <input
+          type="radio"
+          id="deepl_free"
+          name="deepl_api_type"
+          value="free"
+          checked=""
+        />
+        <label for="Free">Free</label>
+        <input type="radio" id="deepl_pro" name="deepl_api_type" value="pro" />
+        <label for="Pro">Pro</label>
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="auth-key">Deepl Auth Key:</label>
+        <input
+          type="text"
+          id="deepl_auth"
+          name="deepl_auth"
+          required=""
+          size="30"
+        />
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="target-lang-select">Target Language:</label>
+        <select name="deepl_target" id="deepl_target">
+          <option value="">--Please choose an option--</option>
+          <option value="BG">Bulgarian</option>
+          <option value="CS">Czech</option>
+          <option value="DA">Danish</option>
+          <option value="DE">German</option>
+          <option value="EL">Greek</option>
+          <option value="ES">Spanish</option>
+          <option value="ET">Estonian</option>
+          <option value="FI">Finnish</option>
+          <option value="FR">French</option>
+          <option value="HU">Hungarian</option>
+          <option value="IT">Italian</option>
+          <option value="JA">Japanese</option>
+          <option value="LT">Lithuanian</option>
+          <option value="LV">Latvian</option>
+          <option value="NL">Dutch</option>
+          <option value="PL">Polish</option>
+          <option value="RO">Romanian</option>
+          <option value="RU">Russian</option>
+          <option value="SK">Slovak</option>
+          <option value="SL">Slovenian</option>
+          <option value="SV">Swedish</option>
+          <option value="ZH">Chinese</option>
+        </select>
+      </div>
+      <input
+        id="save_button"
+        style="margin-top: 30px;"
+        type="button"
+        value="Save"
+      />
+      <span id="message_text"></span>
+    </form>
+
+    <script src="main.js" type="module"></script>
+  </body>
+</html>

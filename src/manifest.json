@@ -1,0 +1,17 @@
+{
+    "name": "southpark-deepl-translate-chrome-extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [{
+        "matches": ["https://www.southparkstudios.com/episodes/*"],
+        "js": [
+          "content.ts"
+        ]
+    }],
+    "permissions": [
+      "storage"
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+}
