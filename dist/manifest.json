@@ -1,11 +1,14 @@
 {
-    "name": "southpark-deepl-translate-chrome-extension",
-    "version": "1.0",
+    "name": "Southpark Deepl Translate",
+    "version": "1.0.0",
+    "description": "Automatically translate southparkstudios.com videos using the Deepl API",
     "manifest_version": 3,
     "content_scripts": [
         {
             "matches": [
-                "https://www.southparkstudios.com/episodes/*"
+                "https://www.southparkstudios.com/episodes/*",
+                "https://www.southparkstudios.com/collections/*",
+                "https://www.southparkstudios.com/video-clips/*"
             ],
             "js": [
                 "content.js"
@@ -15,6 +18,11 @@
     "permissions": [
         "storage"
     ],
+    "icons": {
+        "16": "static/icon16.png",
+        "48": "static/icon48.png",
+        "128": "static/icon128.png"
+    },
     "action": {
         "default_popup": "popup.html"
     }
