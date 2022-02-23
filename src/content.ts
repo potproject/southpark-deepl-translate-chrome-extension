@@ -38,6 +38,9 @@ function getVideo() {
   video.addEventListener("play", (e) => {
     setTrack(video);
   });
+  video.addEventListener("loadedmetadata", (e) => {
+    setTrack(video);
+  });
 }
 
 function setTrack(video: HTMLVideoElement){
