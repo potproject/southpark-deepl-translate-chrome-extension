@@ -8,7 +8,7 @@
     },
     "keywords": [],
     "author": "potproject",
-    "license": "MIT",
+    "license": "GPLv3",
     "devDependencies": {
         "@types/chrome": "0.0.178",
         "vite": "^2.8.4",
