@@ -1,6 +1,6 @@
 {
     "name": "Southpark Deepl Translate",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Automatically translate southparkstudios.com videos using the Deepl API",
     "manifest_version": 3,
     "content_scripts": [

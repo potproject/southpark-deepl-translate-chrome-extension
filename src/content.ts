@@ -76,7 +76,7 @@ async function translate(blobUrl: string): Promise<string> {
     return "";
   }
   const textArray = tree.cues.map((vtt: any) => vtt.text) as string[];
-  const textParsedArray = textArray.map((text) => text.replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("\n", " "));
+  const textParsedArray = textArray.map((text) => text.replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("\n", " ").replaceAll("♪", ""));
   const length = textParsedArray.reduce(
     (pv, cv) => pv + cv.length,
     0
