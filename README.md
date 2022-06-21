@@ -27,3 +27,7 @@ deepl API Proを使用することも出来ますが、課金される可能性�
 登録後、取得したキーをDeepl Auth Keyに設定してください。
 
 ![image](https://user-images.githubusercontent.com/6498055/155258908-79f9298e-c150-4227-81dc-a0e73a9cdeba.png)
+
+### Support Language
+
+Bulgarian / Czech / Danish / German / Greek / Spanish / Estonian / Finnish / French / Hungarian / Italian / Japanese / Lithuanian / Latvian / Dutch / Polish / Romanian / Russian / Slovak / Slovenian / Swedish / Chinese
