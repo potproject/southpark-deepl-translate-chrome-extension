@@ -30,4 +30,4 @@ deepl API Proを使用することも出来ますが、課金される可能性�
 
 ### Support Language
 
-Bulgarian / Czech / Danish / German / Greek / Spanish / Estonian / Finnish / French / Hungarian / Italian / Japanese / Lithuanian / Latvian / Dutch / Polish / Romanian / Russian / Slovak / Slovenian / Swedish / Chinese
+Bulgarian / Czech / Danish / German / Greek / Spanish / Estonian / Finnish / French / Hungarian / Indonesian / Italian / Japanese / Korean / Lithuanian / Latvian / Norwegian / Dutch / Polish / Portuguese / Romanian / Russian / Slovak / Slovenian / Swedish / Turkish / Ukrainian / Chinese

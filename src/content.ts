@@ -43,14 +43,42 @@ function getVideo() {
   });
 }
 
-function setTrack(video: HTMLVideoElement){
+let existTranslateIDs = [];
+
+async function setTrack(video: HTMLVideoElement){
+  let storage = await chrome.storage.local.get(["api_type", "deepl_auth", "deepl_target"]) as storageType;
   const track = video.querySelector("track");
   if (track && track.src) {
     const blobURL = track.src;
     translate(blobURL).then(
       (url) => { if (url) { track.src = url } }
     )
+    return;
   }
+  track.addEventListener('cuechange', (event) => {
+    const idText : {index: number, id: string, text: string}[] = [];
+    for(let index = 0; index < track.track.cues.length; index++){
+      if(existTranslateIDs.includes(track.track.cues[index].id)){
+        continue;
+      }
+      const id = track.track.cues[index].id;
+      const text = textParsedChange(track.track.cues[index].text);
+      if (text.trim() === "") {
+        continue;
+      }
+      idText.push({index, id, text});
+      existTranslateIDs.push(id);
+    }
+    if (idText.length === 0) {
+      return;
+    }
+    deeplFetch(idText.map(({text}) => text), "free", storage.deepl_auth, storage.deepl_target).then((translatedText) => {
+      for(const index in idText){
+        const cue = track.track.cues[idText[index].index];
+        cue.text = translatedText[index];
+      }
+    });
+  });
 }
 
 async function translate(blobUrl: string): Promise<string> {
@@ -76,7 +104,7 @@ async function translate(blobUrl: string): Promise<string> {
     return "";
   }
   const textArray = tree.cues.map((vtt: any) => vtt.text) as string[];
-  const textParsedArray = textArray.map((text) => text.replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("\n", " ").replaceAll("♪", ""));
+  const textParsedArray = textParsedArrayChange(textArray);
   const length = textParsedArray.reduce(
     (pv, cv) => pv + cv.length,
     0
@@ -108,6 +136,14 @@ async function translate(blobUrl: string): Promise<string> {
   return nowURL;
 }
 
+function textParsedArrayChange(textArray: string[]): string[] {
+  return textArray.map((text) => textParsedChange(text));
+}
+
+function textParsedChange(text: string): string {
+  return text.replaceAll("<b>", "").replaceAll("</b>", "").replaceAll("\n", " ").replaceAll("♪", "").replaceAll("-", "");
+}
+
 async function deeplFetch(textArray: string[], api_type:"free"|"pro", auth_key: string, target_lang: string): Promise<string[]> {
   let formData = new FormData();
   formData.append('auth_key', auth_key);
@@ -121,6 +157,7 @@ async function deeplFetch(textArray: string[], api_type:"free"|"pro", auth_key: 
     body: formData,
   }).then(res => {
     if(res.status === 403){
+      displayLog("Deepl Authentication failure.");
       throw new Error("Authentication failure");
     }
     return res.json();
